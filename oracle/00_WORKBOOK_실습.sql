@@ -15140,3 +15140,5 @@ ALTER TABLE TB_GRADE ENABLE CONSTRAINT FK_GRADE_02;
 set feedback on
 set define on
 prompt 데이터 입력을 완료했습니다.
+
+
