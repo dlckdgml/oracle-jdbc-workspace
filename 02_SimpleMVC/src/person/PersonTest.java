@@ -41,8 +41,8 @@ public class PersonTest {
 		closeAll(conn, st);
 	}
 	
-	
 	// 변동적인 반복.. 비즈니스 로직.. DAO(Database Access Object)
+	
 	public void addPerson(String name, String address) throws SQLException {
 		Connection conn = getConnect();
 		PreparedStatement st = conn.prepareStatement(p.getProperty("addPerson"));
@@ -57,19 +57,51 @@ public class PersonTest {
 		closeAll(conn, st);
 	}
 	
-	public void removePerson(int id) {
+	public void removePerson(int id) throws SQLException {
+		
+		Connection conn = getConnect();
+		PreparedStatement st = conn.prepareStatement(p.getProperty("removePerson"));
+		st.setInt(1, id);
+		
+		int result = st.executeUpdate();
+		System.out.println(result + "명 삭제!");
+		
+		closeAll(conn, st);
+	}
+	
+	public void updatePerson(int id, String address) throws SQLException {
+		
+		Connection conn = getConnect();
+		PreparedStatement st = conn.prepareStatement(p.getProperty("updatePerson"));
+		st.setString(1, address);
+		st.setInt(2, id);
+		
+		int result = st.executeUpdate();
+		System.out.println(result + "명 수정!");
+		
+		closeAll(conn, st);
+	}
+	
+	public void searchAllPerson() throws SQLException {
+		
+		Connection conn = getConnect();
+		PreparedStatement st = conn.prepareStatement(p.getProperty("searchAllPerson"));
+	    ResultSet rs = st.executeQuery();
+	    
+	    while (rs.next()) {
+	    	System.out.println();
+	    }
 		
 	}
 	
-	public void updatePerson(int id, String address) {
+	public void viewPerson(int id) throws SQLException {
 		
-	}
-	
-	public void searchAllPerson() {
+		Connection conn = getConnect();
+		PreparedStatement st = conn.prepareStatement(p.getProperty("viewPerson"));
+		st.setInt(1, id);
 		
-	}
-	
-	public void viewPerson(int id) {
+		ResultSet rs = st.executeQuery();
+		System.out.println();
 		
 	}
 	
